@@ -1,0 +1,17 @@
+html
+  head
+    link(rel="icon" href="/favicon.ico")
+    style
+      include ftp.css
+    title= title
+  body
+    if file !== ""
+      p= file
+    else
+      h1 FTP SERVER
+      ul
+        each item in items.length ? items : ["There are no items"]
+          li
+            if item.type === 'directory'
+              img(src='/directory.png')
+            a(href= '?path=' + path + '/' + item.name)= item.name
