@@ -1,0 +1,17 @@
+img {
+    width: 20px;
+    height: 20px;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 1px solid cornflowerblue;
+    border-radius: 10px;
+    padding: 16px;
+    width: 360px;
+}
+ul > li {
+    list-style-type: none;
+}
