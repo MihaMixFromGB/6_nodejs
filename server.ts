@@ -2,12 +2,34 @@ import express, { Express, Request, Response } from 'express';
 
 const app: Express = express();
 
-const port = 3000;
+const port = process.env.PORT;
 
 app
   .get('/', (req: Request, res: Response) => {
-    res.send('Hello!');
+    console.log("port", port);
+
+    const status = connectToDB();
+
+    res.send(status);
   })
-  .listen(process.env.PORT || port, () => {
+  .listen(port, () => {
     console.log(`Server listhening on port ${port}`)
   });
+
+function connectToDB(): string {
+  const mongo = require('mongodb').MongoClient
+
+  mongo.connect(
+    'mongodb://localhost:27017',
+    (err: any, client: any) => {
+      if (err) {
+        return 'Connection error: ' + err
+        // throw err
+      }
+
+      client.close()
+    }
+  )
+
+  return 'Connected and closed';
+}
