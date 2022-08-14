@@ -8,6 +8,6 @@ app
   .get('/', (req: Request, res: Response) => {
     res.send('Hello!');
   })
-  .listen(port, () => {
+  .listen(process.env.PORT || port, () => {
     console.log(`Server listhening on port ${port}`)
   });
