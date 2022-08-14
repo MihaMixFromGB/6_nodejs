@@ -7,7 +7,9 @@
   },
   "main": "index.js",
   "nodemonConfig": {
-    "watch": ["lesson-3"],
+    "watch": [
+      "lesson-3"
+    ],
     "ext": "ts",
     "execMap": {
       "ts": "ts-node"
@@ -30,7 +32,6 @@
     "@types/node": "^18.7.1",
     "nodemon": "^2.0.19",
     "pug": "^3.0.2",
-    "ts-node": "^10.9.1",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },
@@ -39,7 +40,8 @@
     "commander": "^9.4.0",
     "express": "^4.18.1",
     "inquirer": "^9.1.0",
-    "readline": "^1.3.0"
+    "readline": "^1.3.0",
+    "ts-node": "^10.9.1"
   },
   "bin": {
     "cli-reader": "./lesson-2/cli-reader.mjs"
