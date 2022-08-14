@@ -2,6 +2,9 @@
   "name": "6_nodejs",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "index.js",
   "nodemonConfig": {
     "watch": ["lesson-3"],
@@ -13,9 +16,13 @@
   "scripts": {
     "start": "ts-node ./lesson-2/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon ./lesson-3/server.ts"
+    "server": "ts-node server.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
