@@ -1,10 +1,12 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 
+import { dbConnect } from "./utils/dbConnect";
 import { apiRouter } from './routes/index';
 
 const app: Express = express();
 dotenv.config();
+dbConnect();
 
 const port = process.env.PORT;
 
