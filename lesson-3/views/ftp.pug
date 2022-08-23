@@ -9,9 +9,20 @@ html
       p= file
     else
       h1 FTP SERVER
+      p USERS ONLINE:
+        span#usersCount
       ul
         each item in items.length ? items : ["There are no items"]
           li
             if item.type === 'directory'
               img(src='/directory.png')
             a(href= '?path=' + path + '/' + item.name)= item.name
+    
+    script(src='/scripts/socket.io.js')
+    script.
+      const socket = io()
+
+      socket.on('USERS_COUNT', ({count}) => {
+        const usersCountSpan = document.getElementById('usersCount');
+        usersCountSpan.innerHTML = count;
+      })
