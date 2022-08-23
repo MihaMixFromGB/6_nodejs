@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import fs, { createReadStream } from 'fs';
 import path from 'path';
+import { Worker } from 'worker_threads';
 
 export const ftpRouter: Router = express.Router();
 
@@ -18,7 +19,8 @@ ftpRouter.get('/', async (req, res) => {
     const fullPath = path.join(rootPath, selectedPath);
 
     if (isFile(fullPath)) {
-        const fileContent = await readFile(fullPath);
+        // const fileContent = await readFile(fullPath);
+        const fileContent = await readFileWorker(fullPath);
         res.render('ftp', {
             title,
             path: selectedPath,
@@ -66,5 +68,19 @@ function readFile(fullPath: string): Promise<string> {
     return new Promise((resolve, reject) => {
         readStream.on('data', (chunk) => resolve(chunk.toString()));
         readStream.on('error', (error) => reject(error.message))
+    })
+}
+
+function readFileWorker(fullPath: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const worker = new Worker(
+            path.resolve('lesson-3/utils/readFileWorker.js'),
+            {
+                workerData: fullPath
+            }
+        );
+
+        worker.on('message', resolve);
+        worker.on('error', reject);
     })
 }
